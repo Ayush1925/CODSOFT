@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import *
 import math
+from tkinter import messagebox
 
 root = Tk()
 root.title("CODSOFT CALCULATOR")
@@ -16,7 +17,6 @@ def add_to_calculation(symbol):
   labelEntery.insert(1.0,calculation)
   labelEntery.see(tk.END)
   
-
 def evaluate_calculation():
   global calculation
   try:
@@ -46,6 +46,9 @@ def clear_field():
   calculation = ""
   labelEntery.delete(1.0,'end')
 
+def showmessage():
+  messagebox.showinfo("Error","Input Two Numbers And An Operation Choice.")
+
 
 labelEntery = tk.Text(root,width=11,height=0,border=2,borderwidth=3,font=("arial",50,"bold"),bg="#ADFF2F")
 labelEntery.place(x=15,y=10)
@@ -73,7 +76,6 @@ button9.place(x=230,y=230)
 
 buttonmu = tk.Button(root,text="*\nMULTIPL",width=8,height=3,font=("arial",12,"bold"),bg="#DEB887",command=lambda:add_to_calculation("*"))
 buttonmu.place(x=340,y=230)
-
 
 buttonc4 = Button(root,text="4\nFOUR",width=8,height=3,font=("arial",12,"bold"),bg="#FFBBFF",command=lambda:add_to_calculation(4))
 buttonc4.place(x=15,y=329)
@@ -108,7 +110,7 @@ buttonnot.place(x=120,y=530)
 buttonnot = Button(root,text=".\nDOT",width=8,height=3,font=("arial",12,"bold"),bg="#EEB4B4",command=lambda:add_to_calculation("."))
 buttonnot.place(x=228,y=530)
 
-buttonres = tk.Button(root,text="=",width=8,height=3,font=("arial",12,"bold"),bg="#FF0000",command=lambda:evaluate_calculation())
+buttonres = tk.Button(root,text="=",width=8,height=3,font=("arial",12,"bold"),bg="#FF0000",command=lambda: showmessage() if not calculation else evaluate_calculation())
 buttonres.place(x=340,y=533)
 
 
